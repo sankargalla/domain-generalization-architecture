@@ -1,46 +1,93 @@
-Domain Generalization Architecture:
-A novel approach combining Margin Disparity Discrepancy (MDD) and Self-Supervised Semantic Alignment
-(S³A) to enhance domain adaptation in neural networks. Addressed challenges like domain shifts, unseen target classes,
-and label imbalance by aligning global feature distributions and improving category-level semantic alignment. Validated
-the model on Office-Home and VisDA datasets, achieving superior domain generalization performance compared to
-baseline methods. Utilized Python, PyTorch, and TensorFlow for implementation and analysis, contributing to
-advancements in explainable AI and domain-invariant learning.
+# Domain Generalization Architecture
 
-Setting up Python Environment
+A novel approach combining Margin Disparity Discrepancy (MDD) and Self-Supervised Semantic Alignment (S³A) to enhance domain adaptation in neural networks. This architecture addresses challenges such as domain shifts, unseen target classes, and label imbalance by aligning global feature distributions and improving category-level semantic alignment. The model has been validated on the Office-Home and VisDA datasets, achieving superior domain generalization performance compared to baseline methods. Python, PyTorch, and TensorFlow were used for implementation and analysis, contributing to advancements in explainable AI and domain-invariant learning.
 
-Following the instructions provided here to install all necessary packages used in this code base.
+---
 
-Compatible PyTorch version
-We test this project with PyTorch version 2.0. Emprically it has shown to speed up the training progress.
+## Setup Instructions
 
-However, the code does not use any PyTorch 2.0 features and should be compatible with older versions of PyTorch, such as version 1.12.0.
+### Setting up Python Environment
 
-Installation:
+Follow the instructions below to install all necessary packages used in this code base.
 
+### Compatible PyTorch Version
+
+This project has been tested with PyTorch version **2.0**, which empirically speeds up the training process. However, the code does not utilize any PyTorch 2.0-specific features and is compatible with older versions, such as **1.12.0**.
+
+### Installation
+
+```bash
 pip install -r requirements.txt
+```
 
-Download and Preparation of Datasets:
+---
 
-Before running the data preparation script, make sure to update the configuration file in data_preparation/dataset.yaml with the correct settings for your dataset. In particular, you will need to update the dataset_dir variable to point to the directory where your dataset is stored.
+## Download and Preparation of Datasets
 
+### Configuration
+
+Before running the data preparation script, update the configuration file located at `data_preparation/dataset.yaml` with the correct settings for your dataset. In particular, update the `dataset_dir` variable to point to the directory where your dataset is stored:
+
+```yaml
 dataset_dir: /path/to/dataset
-To download and prepare one of these datasets, run the following commands:
+```
 
+### Download and Prepare Dataset
+
+Run the following commands to download and prepare your dataset:
+
+```bash
 cd data_preparation
 
 python data_preparation.py --dataset <DATASET>
+```
 
-Eg: Replace <DATASET> with OfficeHome to download OfficeHome dataset
+#### Example
 
-Replace with the name of the dataset you want to prepare (e.g. DomainNet, OfficeHome). This script will download the dataset (if necessary) and extract the text data which specify the way to split training, validation, and test sets. The resulting data will be saved in the format described above.
+Replace `<DATASET>` with the name of the dataset you want to prepare (e.g., `OfficeHome`, `DomainNet`). For example:
 
-After running the data preparation script, you should be able to use the resulting data files in this repository.
+```bash
+python data_preparation.py --dataset OfficeHome
+```
 
-Running the model
+This script will:
+- Download the dataset (if necessary).
+- Extract the text data specifying how to split the training, validation, and test sets.
+- Save the resulting data in the appropriate format for this repository.
 
-To run the main Python file, use the following command:
+After running the data preparation script, the resulting data files will be ready for use.
 
+---
+
+## Running the Model
+
+To execute the model, use the following command:
+
+```bash
 python main.py --method mme --dataset OfficeHome --source 0 --target 1 --seed 1102 --num_iters 10000 --shot 3shot
+```
 
-This command runs the model on the 3-shot A -> C Office-Home dataset, with the specified hyperparameters. You can modify the command to run different experiments with different hyperparameters or on different datasets.
+### Explanation of Parameters
+- `--method`: The method to use (e.g., `mme` for MDD and S³A).
+- `--dataset`: The dataset to use (e.g., `OfficeHome`, `DomainNet`).
+- `--source`: The source domain index.
+- `--target`: The target domain index.
+- `--seed`: The random seed for reproducibility.
+- `--num_iters`: The number of iterations for training.
+- `--shot`: The number of shots (e.g., `3shot`).
 
+#### Example
+
+To run the model on the 3-shot A -> C Office-Home dataset:
+
+```bash
+python main.py --method mme --dataset OfficeHome --source 0 --target 1 --seed 1102 --num_iters 10000 --shot 3shot
+```
+
+You can modify this command to run experiments with different hyperparameters or datasets.
+
+---
+
+## Datasets Used
+- **Office-Home**
+- **VisDA**
