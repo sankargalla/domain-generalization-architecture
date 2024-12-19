@@ -1,0 +1,25 @@
+dataset_dir: /Users/harikamajji/Projects/NN/SLA-main/data_preparation/
+text_url: https://raw.githubusercontent.com/VisionLearningGroup/SSDA_MME/master/data/txt/
+dataset_cfg:
+    OfficeHome:
+        name: OfficeHome
+        path: /Users/harikamajji/Projects/NN/SLA-main/data_preparation/
+        text_path: /Users/harikamajji/Projects/NN/SLA-main/data_preparation/OfficeHome/text
+        num_classes: 65
+        url: https://wjdcloud.blob.core.windows.net/dataset/OfficeHome.zip
+        domains:
+            - Art
+            - Clipart
+            - Product
+            - Real
+    DomainNet:
+        name: DomainNet
+        path: /tmp2/chu0802/data/DomainNet
+        text_path: /tmp2/chu0802/data/DomainNet/text
+        num_classes: 126
+        url: http://csr.bu.edu/ftp/visda/2019/multi-source
+        domains:
+            - clipart
+            - painting
+            - real
+            - sketch
